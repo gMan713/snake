@@ -1,10 +1,12 @@
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
  * Created by ros_cqmarshall on 5/13/2015.
  */
-public class Snake
+public class Snake implements KeyListener
 {
   private boolean            alive;
   private boolean            grow;
@@ -75,17 +77,21 @@ public class Snake
   {
     alive = false;
   }
+  
   public void draw()
   {
   }
+  
   public int getX()
   {
     return segments.get(0).getX();
   }
+  
   public int getY()
   {
     return segments.get(0).getY();
   }
+  
   public boolean isOn(Fruit fruit)
   {
     for (Segment segment : segments)
@@ -94,6 +100,7 @@ public class Snake
     }
     return false;
   }
+  
   public boolean isDead()
   {
     for (Segment seg2 : segments)
@@ -102,4 +109,29 @@ public class Snake
     }
     return false;
   }
-}
+  
+  public void setDriection(int d)
+  {
+	 direction = d;
+  }
+  
+  public void keyPressed(KeyEvent k) {
+	if (k.getKeyCode() == KeyEvent.VK_UP){
+		setDriection(1);
+	}
+	else if (k.getKeyCode() == KeyEvent.VK_RIGHT){
+		setDriection(2);
+	}
+	else if (k.getKeyCode() == KeyEvent.VK_DOWN){
+		setDriection(3);
+	}
+	else if (k.getKeyCode() == KeyEvent.VK_LEFT){
+		setDriection(4);
+	}
+  }
+
+  public void keyReleased(KeyEvent k) {
+  }
+
+  public void keyTyped(KeyEvent k) {
+  }
