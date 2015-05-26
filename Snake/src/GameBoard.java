@@ -26,7 +26,10 @@ public class GameBoard extends JLabel
     if (snake.isOn(fruit))
     {
       score += 1;
-      fruit.move(snake);
+    }
+    while (snake.isOn(fruit))
+    {
+      fruit.move();
     }
     if (snake.isDead()) { return false; }
     return true;
