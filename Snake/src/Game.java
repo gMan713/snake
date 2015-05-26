@@ -31,15 +31,26 @@ public class Game extends JFrame
     BufferedImage myPicture;
     try
     {
-      myPicture = ImageIO.read(new File("H:\\Java\\Snake\\src\\Blue Snake.jpg"));
+      myPicture = ImageIO.read(new File("H:\\Java\\git\\snake\\Snake\\src\\Blue Snake.jpg"));
       final JLabel background = new JLabel(new ImageIcon(myPicture));
       add(background);
       background.setLayout(new FlowLayout());
-      JButton option = new JButton();
+      final JButton option = new JButton();
       option.setText("Options");
       option.setBackground(Color.WHITE);
       background.add(option);
-      JButton play = new JButton();
+      final JButton quit = new JButton();
+      quit.setText("Quit");
+      quit.addActionListener(new ActionListener()
+      {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+          System.exit(0);
+        }
+      });
+      background.add(quit);
+      final JButton play = new JButton();
       play.setText("Play");
       play.setBackground(Color.WHITE);
       background.add(play);
@@ -55,24 +66,19 @@ public class Game extends JFrame
           backgroundColor = Color.MAGENTA;
           board = new GameBoard(speed, snakeColor, backgroundColor);
           background.add(board);
-          revalidate();
+          background.remove(play);
+          background.remove(quit);
+          background.remove(option);
+          repaint();
           while (board.play())
           {
           }
           remove(board);
+          background.add(play);
+          background.add(option);
+          background.add(quit);
         }
       });
-      JButton quit = new JButton();
-      quit.setText("Quit");
-      quit.addActionListener(new ActionListener()
-      {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-          System.exit(0);
-        }
-      });
-      background.add(quit);
     }
     catch (IOException e)
     {

@@ -19,10 +19,12 @@ public class GameBoard extends JLabel
     snake = new Snake(diff, snakeColor);
     fruit = new Fruit();
     add(fruit);
+    setOpaque(true);
     setVisible(true);
   }
   public boolean play()
   {
+    snake.move();
     if (snake.isOn(fruit))
     {
       score += 1;
