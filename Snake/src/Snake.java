@@ -87,14 +87,14 @@ public class Snake implements KeyListener {
 		return false;
 	}
 
-	public boolean isDead() {
+	public boolean isAlive() {
 		for (Segment seg2 : segments) {
 			if (segments.get(0).getX() == seg2.getX()
 					&& segments.get(0).getX() == seg2.getY()) {
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	public void setDriection(int d) {
