@@ -19,8 +19,9 @@ public class GameBoard extends JLabel {
 		snake = new Snake(speed, snakeColor);
 		fruit = new Fruit();
 		add(fruit);
-		setOpaque(true);
 		setVisible(true);
+		setOpaque(true);
+		repaint();
 	}
 
 	public boolean play() {
@@ -31,7 +32,7 @@ public class GameBoard extends JLabel {
 		while (snake.isOn(fruit)) {
 			fruit.move(snake);
 		}
-
+		repaint();
 		return snake.isAlive();
 	}
 }

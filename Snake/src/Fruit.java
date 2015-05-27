@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JLabel;
@@ -7,12 +9,17 @@ public class Fruit extends JLabel {
 	private int y;
 
 	public Fruit() {
-		this.x = (int) ((int) Math.random() * Toolkit.getDefaultToolkit()
-				.getScreenSize().getWidth());
-		this.y = (int) ((int) Math.random() * Toolkit.getDefaultToolkit()
-				.getScreenSize().getHeight());
+		super();
+		setBackground(Color.YELLOW);
+		this.x = (int) (Math.random()
+				* Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 10) * 10;
+		this.y = (int) (Math.random()
+				* Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10) * 10;
+		System.out.println(x + " " + y);
 		setLocation(x, y);
-		// TODO: draw fruit
+		setSize(new Dimension(10, 10));
+		setVisible(true);
+
 	}
 
 	public int getX() {
