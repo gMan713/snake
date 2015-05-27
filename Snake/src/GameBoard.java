@@ -1,10 +1,11 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 
 public class GameBoard extends JLabel {
-	
+
 	private Snake snake;
 	private int score;
 	private Color backgroundColor;
@@ -36,4 +37,3 @@ public class GameBoard extends JLabel {
 		return true;
 	}
 }
->>>>>>> 059b4fbc23d0f99772d69da481e48f15a0339335

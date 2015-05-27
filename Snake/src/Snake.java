@@ -4,7 +4,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Snake implements KeyListener {
-	
+
 	private boolean alive;
 	private boolean grow;
 	private int speed;
@@ -121,4 +121,3 @@ public class Snake implements KeyListener {
 	public void keyTyped(KeyEvent k) {
 	}
 }
->>>>>>> 059b4fbc23d0f99772d69da481e48f15a0339335
