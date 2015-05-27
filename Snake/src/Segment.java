@@ -2,7 +2,7 @@ import java.awt.*;
 
 import javax.swing.JLabel;
 
-public class Segment extends JLabel{
+public class Segment extends Canvas{
 
 	private Color color;
 	private int locationX;
@@ -28,6 +28,7 @@ public class Segment extends JLabel{
 	}
 	
 	public void paint(Graphics g){
+		g.setColor(color);
 		g.fillRect(locationX, locationY, 10, 10);
 	}
 }

@@ -4,7 +4,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 
-public class Fruit extends JLabel {
+public class Fruit extends Canvas {
+	
 	private int x;
 	private int y;
 
@@ -17,7 +18,7 @@ public class Fruit extends JLabel {
 				* Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10) * 10;
 		System.out.println(x + " " + y);
 		setLocation(x, y);
-		setSize(new Dimension(10, 10));
+		setSize(new Dimension(8, 8));
 		setVisible(true);
 
 	}
@@ -39,6 +40,11 @@ public class Fruit extends JLabel {
 		while (snake.isOn(this)) {
 			move(snake);
 		}
-		// TODO: repaint fruit
+		paint(g);
+	}
+	
+	public void paint(Graphics g){
+		g.setColor(Color.YELLOW);
+		g.fillRect(x+1, y+1, 8, 8);
 	}
 }

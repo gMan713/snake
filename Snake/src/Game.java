@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Game extends JFrame {
+	
 	private BufferedImage backgroundPic;
 	private Color snakeColor;
 	private int speed;
