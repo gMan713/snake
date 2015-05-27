@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -119,5 +120,11 @@ public class Snake implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent k) {
+	}
+	
+	public void paint(Graphics g){
+		for(Segment x: segments){
+			x.paint(g);
+		}
 	}
 }

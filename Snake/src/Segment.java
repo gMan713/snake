@@ -1,6 +1,8 @@
 import java.awt.*;
 
-public class Segment {
+import javax.swing.JLabel;
+
+public class Segment extends JLabel{
 
 	private Color color;
 	private int locationX;
@@ -24,4 +26,9 @@ public class Segment {
 		locationX = x;
 		locationY = y;
 	}
+	
+	public void paint(Graphics g){
+		g.fillRect(locationX, locationY, 10, 10);
+	}
 }
+
