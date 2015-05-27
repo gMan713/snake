@@ -63,7 +63,7 @@ public class Game extends JFrame
           GameBoard board;
           speed = 1;
           snakeColor = Color.RED;
-          backgroundColor = Color.MAGENTA;
+          backgroundColor = Color.BLACK;
           board = new GameBoard(speed, snakeColor, backgroundColor);
           background.add(board);
           background.remove(play);
