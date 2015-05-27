@@ -11,12 +11,12 @@ public class GameBoard extends JLabel {
 	private Color backgroundColor;
 	private Fruit fruit;
 
-	public GameBoard(int diff, Color snakeColor, Color backgroundColor) {
+	public GameBoard(int speed, Color snakeColor, Color backgroundColor) {
 		super();
 		setBackground(backgroundColor);
 		setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
 		score = 0;
-		snake = new Snake(diff, snakeColor);
+		snake = new Snake(speed, snakeColor);
 		fruit = new Fruit();
 		add(fruit);
 		setOpaque(true);

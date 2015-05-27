@@ -1,8 +1,5 @@
 import java.awt.*;
 
-/**
- * Created by ros_cqmarshall on 5/13/2015.
- */
 public class Segment {
 
 	private Color color;

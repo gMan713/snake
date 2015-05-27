@@ -3,9 +3,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-/**
- * Created by ros_cqmarshall on 5/13/2015.
- */
 public class Snake implements KeyListener {
 	
 	private boolean alive;
