@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Game extends JFrame {
-	
+
 	private BufferedImage backgroundPic;
 	private Color snakeColor;
 	private int speed;
@@ -65,8 +65,7 @@ public class Game extends JFrame {
 					background.remove(quit);
 					background.remove(option);
 					repaint();
-					while (snake.isAlive()) {
-						board.play();
+					while (board.play()) {
 					}
 					remove(board);
 					background.add(play);

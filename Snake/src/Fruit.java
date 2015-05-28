@@ -1,11 +1,11 @@
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 
-import javax.swing.JLabel;
-
 public class Fruit extends Canvas {
-	
+
 	private int x;
 	private int y;
 
@@ -31,20 +31,20 @@ public class Fruit extends Canvas {
 		return y;
 	}
 
-	public void move(Snake snake) {
+	public void move(Snake snake, Graphics g) {
 		this.x = (int) ((int) Math.random() * Toolkit.getDefaultToolkit()
 				.getScreenSize().getWidth());
 		this.y = (int) ((int) Math.random() * Toolkit.getDefaultToolkit()
 				.getScreenSize().getHeight());
 		setLocation(x, y);
 		while (snake.isOn(this)) {
-			move(snake);
+			move(snake, g);
 		}
 		paint(g);
 	}
-	
-	public void paint(Graphics g){
+
+	public void paint(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.fillRect(x+1, y+1, 8, 8);
+		g.fillRect(x + 1, y + 1, 8, 8);
 	}
 }
