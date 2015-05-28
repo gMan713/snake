@@ -64,7 +64,7 @@ public class Game extends JFrame {
 					background.remove(play);
 					background.remove(quit);
 					background.remove(option);
-					repaint();
+					update(g);
 					while (board.play()) {
 					}
 					remove(board);

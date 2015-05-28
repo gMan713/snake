@@ -1,10 +1,8 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 
 import javax.swing.JLabel;
 
-public class GameBoard extends JLabel {
+public class GameBoard extends Canvas {
 
 	private Snake snake;
 	private int score;
@@ -21,7 +19,7 @@ public class GameBoard extends JLabel {
 		add(fruit);
 		setVisible(true);
 		setOpaque(true);
-		repaint();
+		update(g);
 	}
 
 	public boolean play() {
@@ -30,12 +28,12 @@ public class GameBoard extends JLabel {
 			score += 1;
 			snake.grow();
 			while (snake.isOn(fruit)) {
-				fruit.move(snake);
+				fruit.move(snake, g);
 			}
 
 		}
 
-		repaint();
+		update(g);
 		return snake.isAlive();
 	}
 }
