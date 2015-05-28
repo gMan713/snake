@@ -2,7 +2,7 @@ import java.awt.*;
 
 import javax.swing.JLabel;
 
-public class Segment extends Canvas{
+public class Segment{
 
 	private Color color;
 	private int locationX;

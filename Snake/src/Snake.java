@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class Snake extends Canvas implements KeyListener {
+public class Snake implements KeyListener {
 
 	private boolean alive;
 	private int growsLeft;

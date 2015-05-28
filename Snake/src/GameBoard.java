@@ -2,7 +2,7 @@ import java.awt.*;
 
 import javax.swing.JLabel;
 
-public class GameBoard extends JLabel{
+public class GameBoard extends Canvas{
 
 	private Snake snake;
 	private int score;
@@ -16,7 +16,6 @@ public class GameBoard extends JLabel{
 		score = 0;
 		this.add(new Snake(speed, snakeColor));
 		this.add(new Fruit());
-		add(fruit);
 		setVisible(true);
 		setOpaque(true);
 		update(g);

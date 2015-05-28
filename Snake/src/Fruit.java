@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 
-public class Fruit extends Canvas {
+public class Fruit{
 
 	private int x;
 	private int y;
