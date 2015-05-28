@@ -30,8 +30,7 @@ public class Game extends JFrame {
 		setLocationRelativeTo(null);
 		BufferedImage myPicture;
 		try {
-			myPicture = ImageIO.read(new File(
-					"H:\\Java\\git\\snake\\Snake\\src\\Blue Snake.jpg"));
+			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
 			background.setLayout(new FlowLayout());
@@ -66,7 +65,8 @@ public class Game extends JFrame {
 					background.remove(quit);
 					background.remove(option);
 					repaint();
-					while (board.play()) {
+					while (snake.isAlive()) {
+						board.play();
 					}
 					remove(board);
 					background.add(play);

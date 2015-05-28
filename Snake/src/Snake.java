@@ -29,6 +29,10 @@ public class Snake implements KeyListener extends Canvas{
 			grow = false;
 		}
 	}
+	
+	public boolean isGrowing(){
+		return grow;
+	}
 
 	public void move() {
 		if (grow == true) {
@@ -62,12 +66,11 @@ public class Snake implements KeyListener extends Canvas{
 			}
 		}
 	}
-
-	public void kill() {
-		alive = false;
-	}
-
-	public void draw() {
+	
+	public void paint(Graphics g){
+		for(Segment x: segments){
+			x.paint(g);
+		}
 	}
 
 	public int getX() {
@@ -89,30 +92,26 @@ public class Snake implements KeyListener extends Canvas{
 	}
 
 	public boolean isAlive() {
-		for (Segment seg2 : segments) {
-			if (segments.get(0).getX() == seg2.getX()
-					&& segments.get(0).getX() == seg2.getY()) {
-				return false;
+		for (int i = 1; i < segment.length; i++) {
+			if (segments.get(0).getX() == segment.get(i).getX()
+				&& segments.get(0).getY() == segment.get(i).getY()) {
+				alive = false;
 			}
 		}
-		return true;
+		return alive;
 	}
-
-	public void setDriection(int d) {
-		direction = d;
-	}
-
+	
 	public void keyPressed(KeyEvent k) {
 		if (k.getKeyCode() == KeyEvent.VK_UP) {
-			setDriection(1);
+			direction = 1;
 		} else if (k.getKeyCode() == KeyEvent.VK_RIGHT) {
-			setDriection(2);
+			direction = 2;
 		} else if (k.getKeyCode() == KeyEvent.VK_DOWN) {
-			setDriection(3);
+			direction = 3;
 		} else if (k.getKeyCode() == KeyEvent.VK_LEFT) {
-			setDriection(4);
+			direction = 4;
 		} else if (k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			// TODO
+			
 		}
 	}
 
@@ -120,11 +119,5 @@ public class Snake implements KeyListener extends Canvas{
 	}
 
 	public void keyTyped(KeyEvent k) {
-	}
-	
-	public void paint(Graphics g){
-		for(Segment x: segments){
-			x.paint(g);
-		}
 	}
 }

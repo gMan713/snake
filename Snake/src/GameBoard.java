@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 
-public class GameBoard extends JLabel {
+public class GameBoard extends JLabel, Canvas{
 
 	private Snake snake;
 	private int score;
@@ -24,15 +24,20 @@ public class GameBoard extends JLabel {
 		repaint();
 	}
 
-	public boolean play() {
+	public void play() {
 		snake.move();
 		if (snake.isOn(fruit)) {
+			int i = 0;
 			score += 1;
+			snake.grow(i);
+			while (snake.isOn(fruit)) {
+				fruit.move(snake);
+			}
 		}
-		while (snake.isOn(fruit)) {
-			fruit.move(snake);
+		if (snake.isGrowing()){
+			i++;
+			snake.grow(i);
 		}
 		repaint();
-		return snake.isAlive();
 	}
 }
