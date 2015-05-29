@@ -22,6 +22,7 @@ public class Game extends JFrame {
 	private Color backgroundColor;
 
 	public Game() {
+		
 		super("Snake");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -29,48 +30,58 @@ public class Game extends JFrame {
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		BufferedImage myPicture;
+		
 		try {
-			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
+			
+			myPicture = ImageIO.read(new File("Snake/Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
 			background.setLayout(new FlowLayout());
+			
 			final JButton option = new JButton();
 			option.setText("Options");
 			option.setBackground(Color.WHITE);
+			
 			background.add(option);
+			
 			final JButton quit = new JButton();
 			quit.setText("Quit");
 			quit.addActionListener(new ActionListener() {
-				@Override
+				
 				public void actionPerformed(ActionEvent e) {
 					System.exit(0);
 				}
 			});
 			background.add(quit);
+			
 			final JButton play = new JButton();
 			play.setText("Play");
 			play.setBackground(Color.WHITE);
 			background.add(play);
 			play.addActionListener(new ActionListener() {
-				@Override
 				public void actionPerformed(ActionEvent e) {
+					
 					// start game
 					GameBoard board;
 					speed = 1;
 					snakeColor = Color.RED;
 					backgroundColor = Color.BLACK;
 					board = new GameBoard(speed, snakeColor, backgroundColor);
-					background.add(board);
+					
+					add(board);
 					background.remove(play);
 					background.remove(quit);
 					background.remove(option);
-					update(g);
-					while (board.play()) {
-					}
-					remove(board);
-					background.add(play);
-					background.add(option);
-					background.add(quit);
+					setVisible(true);
+					
+					//while (board.play()) {
+					//}
+					
+					//remove(board);
+					//background.add(play);
+					//background.add(option);
+					//background.add(quit);
+					//setVisible(true);
 				}
 			});
 		} catch (IOException e) {

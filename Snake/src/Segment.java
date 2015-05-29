@@ -1,6 +1,5 @@
-import java.awt.*;
-
-import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Segment{
 

@@ -1,4 +1,3 @@
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -44,6 +43,7 @@ public class Snake implements KeyListener {
 						.get(0).getY(), color));
 			}
 			growsLeft--;
+			length++;
 		} else {
 			if (direction == 1) {
 				segments.get(segments.size() - 1).move(segments.get(0).getX(),
