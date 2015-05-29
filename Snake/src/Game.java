@@ -1,12 +1,15 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -14,13 +17,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Game extends JFrame {
+public class Game extends JFrame implements Runnable{
 
 	private BufferedImage backgroundPic;
 	private Color snakeColor;
 	private int speed;
 	private Color backgroundColor;
-
+	private boolean running = false;
+	private GameBoard board;
+	
 	public Game() {
 		
 		super("Snake");
@@ -33,7 +38,7 @@ public class Game extends JFrame {
 		
 		try {
 			
-			myPicture = ImageIO.read(new File("Snake/Blue Snake.jpg"));
+			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
 			background.setLayout(new FlowLayout());
@@ -62,7 +67,6 @@ public class Game extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					
 					// start game
-					GameBoard board;
 					speed = 1;
 					snakeColor = Color.RED;
 					backgroundColor = Color.BLACK;
@@ -74,9 +78,18 @@ public class Game extends JFrame {
 					background.remove(option);
 					setVisible(true);
 					
-					//while (board.play()) {
-					//}
+					Timer timer = new Timer();
+					TimerTask run = new TimerTask();
 					
+					timer.schedule(run, (long) 1000/2);
+					
+					remove(board);
+					
+					JButton done = new JButton();
+					play.setText("Done");
+					play.setBackground(Color.WHITE);
+					background.add(done);
+					setVisible(true);
 					//remove(board);
 					//background.add(play);
 					//background.add(option);
@@ -88,5 +101,20 @@ public class Game extends JFrame {
 			e.printStackTrace();
 		}
 		setVisible(true);
+	}
+	
+	public void run(){
+		while (board.isRunning()) {
+			tick();
+			render();
+		}
+	}
+	
+	public void tick(){
+		board.tick();
+	}
+	
+	public void render(){
+		board.render();
 	}
 }
