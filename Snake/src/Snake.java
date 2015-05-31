@@ -1,5 +1,7 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -19,8 +21,11 @@ public class Snake implements KeyListener {
 		this.speed = speed;
 		direction = 2;
 		this.color = color;
-		segments = new ArrayList<Segment>();
-		segments.add(new Segment(40, 360, color));
+		segments = new ArrayList<Segment>();// 0 is the last segment
+		segments.add(new Segment(50, Game.HEIGHT / 2, color));
+		segments.add(new Segment(60, Game.HEIGHT / 2, color));
+		segments.add(new Segment(70, Game.HEIGHT / 2, color));
+		segments.add(new Segment(80, Game.HEIGHT / 2, color));
 	}
 
 	public void grow() {
@@ -30,37 +35,40 @@ public class Snake implements KeyListener {
 	public void move() {
 		if (growsLeft > 0) {
 			if (direction == 1) {
-				segments.add(new Segment(segments.get(0).getX(), segments
-						.get(0).getY() - 10, color));
+				segments.add(0, new Segment(getX(), getY() - 10, color));
 			} else if (direction == 2) {
-				segments.add(new Segment(segments.get(0).getX() + 10, segments
-						.get(0).getY(), color));
+				segments.add(0, new Segment(getX() + 10, getY(), color));
 			} else if (direction == 3) {
-				segments.add(new Segment(segments.get(0).getX(), segments
-						.get(0).getY() + 10, color));
+				segments.add(0, new Segment(getX(), getY() + 10, color));
 			} else if (direction == 4) {
-				segments.add(new Segment(segments.get(0).getX() - 10, segments
-						.get(0).getY(), color));
+				segments.add(0, new Segment(getX() - 10, getY(), color));
 			}
 			growsLeft--;
 			length++;
 		} else {
+			Segment last = segments.get(segments.size()-1);
 			if (direction == 1) {
-				segments.get(segments.size() - 1).move(segments.get(0).getX(),
-						segments.get(0).getY() - 10);
+				last.move(getX(), getY() - 10);
+				addToFront(last);
 			} else if (direction == 2) {
-				segments.get(segments.size() - 1).move(
-						segments.get(0).getX() + 10, segments.get(0).getY());
+				last.move(getX() + 10, getY());
+				addToFront(last);
 			} else if (direction == 3) {
-				segments.get(segments.size() - 1).move(segments.get(0).getX(),
-						segments.get(0).getY() + 10);
+				last.move(getX(), getY() + 10);
+				addToFront(last);
 			} else if (direction == 4) {
-				segments.get(segments.size() - 1).move(
-						segments.get(0).getX() - 10, segments.get(0).getY());
+				last.move(getX() - 10, getY());
+				addToFront(last);
 			}
 		}
 	}
-
+	
+	public void addToFront(Segment last){
+		segments.remove(last);
+		segments.add(0, last);
+		
+	}
+	
 	public void paint(Graphics g) {
 		for (Segment x : segments) {
 			x.paint(g);
@@ -86,13 +94,18 @@ public class Snake implements KeyListener {
 	}
 
 	public boolean isAlive() {
+		int width = Game.WIDTH;
+		int height = Game.HEIGHT;
 		for (int i = 1; i < segments.size(); i++) {
-			if (segments.get(0).getX() == segments.get(i).getX()
-					&& segments.get(0).getY() == segments.get(i).getY()) {
+			if (getX() == segments.get(i).getX()
+					&& getY() == segments.get(i).getY()) {
 				alive = false;
 			}
 		}
-		return alive;
+		if (getX() < 0 || getX() > width || getY() < 0 || getY() > height) {
+			return false;
+		}
+		return true;
 	}
 
 	public void keyPressed(KeyEvent k) {
@@ -104,8 +117,6 @@ public class Snake implements KeyListener {
 			direction = 3;
 		} else if (k.getKeyCode() == KeyEvent.VK_LEFT) {
 			direction = 4;
-		} else if (k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-
 		}
 	}
 
@@ -113,5 +124,8 @@ public class Snake implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent k) {
+		if (k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			Game.pause();
+		}
 	}
 }

@@ -1,45 +1,52 @@
 import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.util.Timer;
 
-public class GameBoard extends Canvas{
+public class GameBoard extends Canvas {
 
 	private Snake snake;
 	private int score;
 	private Fruit fruit;
-	Graphics g;
 
 	public GameBoard(int speed, Color snakeColor, Color backgroundColor) {
 		snake = new Snake(speed, snakeColor);
 		fruit = new Fruit();
-		g = getGraphics();
 		setBackground(backgroundColor);
-		setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
-		
+		setSize(Game.WIDTH, Game.HEIGHT);
 		score = 0;
 	}
 
 	public boolean isRunning() {
 		return snake.isAlive();
 	}
-	
-	public void paint(Graphics g){
-		snake.paint(g);
-		fruit.paint(g);
+
+	public void paint(Graphics g) {
+			snake.paint(g);
+			fruit.paint(g);
 	}
-	
-	public void tick(){
+
+	public void tick() {
 		snake.move();
 		if (snake.isOn(fruit)) {
 			score += 1;
 			snake.grow();
-			while (snake.isOn(fruit)) {
-				fruit.move(snake);
-			}
+			fruit.move(snake);
 		}
 	}
 	
-	public void render(){
-		update(g);
+	public void update(Graphics g){
+		repaint();
 	}
-	
 
+	public void render() {
+		BufferStrategy bs = getBufferStrategy();
+		if (bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
+		Graphics g = bs.getDrawGraphics();
+		paint(g);
+		g.dispose();
+		bs.show();
+	}
 }

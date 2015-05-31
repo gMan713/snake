@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Segment{
+public class Segment {
 
 	private Color color;
 	private int locationX;
@@ -25,10 +25,9 @@ public class Segment{
 		locationX = x;
 		locationY = y;
 	}
-	
-	public void paint(Graphics g){
+
+	public void paint(Graphics g) {
 		g.setColor(color);
 		g.fillRect(locationX, locationY, 10, 10);
 	}
 }
-
