@@ -77,31 +77,29 @@ public class Game extends JFrame {
 					board = new GameBoard(speed, snakeColor, backgroundColor);
 
 					add(board);
+					board.repaint();
 					setVisible(true);
 					background.setVisible(false);
 
 					actListener = new ActionListener() {
 						public void actionPerformed(ActionEvent event) {
-							run();
-							board.repaint();
-							//board.repaint();
 							if (!isRunning()) {
 							timer.stop();
 							}
+							run();
+							board.repaint();
 						}
 					};
 					setVisible(true);
 
-					timer = new Timer(1000 / 5, actListener);
+					timer = new Timer(1000 / 10, actListener);
 					timer.start();
 
-					// if(!isRunning()){
-					// timer.stop();
-					// remove(board);
-					// background.add(quit);
-					// background.add(option);
-					// background.add(play);
-					// }
+					if(!timer.isRunning()){
+					remove(board);
+					background.setVisible(true);
+					setVisible(true);
+					}
 
 					setVisible(true);
 				}

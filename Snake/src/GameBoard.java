@@ -2,11 +2,14 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.Timer;
 
+import javafx.scene.input.KeyCode;
+
 public class GameBoard extends Canvas {
 
 	private Snake snake;
 	private int score;
 	private Fruit fruit;
+	private BufferStrategy bs;
 
 	public GameBoard(int speed, Color snakeColor, Color backgroundColor) {
 		snake = new Snake(speed, snakeColor);
@@ -21,12 +24,13 @@ public class GameBoard extends Canvas {
 	}
 
 	public void paint(Graphics g) {
-			snake.paint(g);
-			fruit.paint(g);
+		snake.paint(g);
+		fruit.paint(g);
 	}
 
 	public void tick() {
 		snake.move();
+		//listen for key
 		if (snake.isOn(fruit)) {
 			score += 1;
 			snake.grow();
@@ -39,14 +43,15 @@ public class GameBoard extends Canvas {
 	}
 
 	public void render() {
-		BufferStrategy bs = getBufferStrategy();
+		bs = getBufferStrategy();
 		if (bs == null) {
-			createBufferStrategy(3);
+			createBufferStrategy(2);
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
 		paint(g);
 		g.dispose();
 		bs.show();
+		bs.dispose();
 	}
 }

@@ -70,8 +70,8 @@ public class Snake implements KeyListener {
 	}
 	
 	public void paint(Graphics g) {
-		for (Segment x : segments) {
-			x.paint(g);
+		for (int i = 0; i < segments.size(); i++) {
+			segments.get(i).paint(g);
 		}
 	}
 
