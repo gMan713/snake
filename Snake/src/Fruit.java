@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 
 public class Fruit {
 
@@ -21,8 +20,8 @@ public class Fruit {
 	}
 
 	public void move(Snake snake) {
-		this.x = (int) (Math.random() * Game.WIDTH / 10) * 10;
-		this.y = (int) (Math.random() * Game.HEIGHT/ 10) * 10;
+		this.x = (int) (Math.random() * (Game.WIDTH - 10) / 10) * 10;
+		this.y = (int) (Math.random() * (Game.HEIGHT - 10) / 10) * 10;
 		while (snake.isOn(this)) {
 			move(snake);
 		}
