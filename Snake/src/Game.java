@@ -1,20 +1,17 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.Timer;
-import java.util.TimerTask;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 public class Game extends JFrame {
 
@@ -84,7 +81,7 @@ public class Game extends JFrame {
 					actListener = new ActionListener() {
 						public void actionPerformed(ActionEvent event) {
 							if (!isRunning()) {
-							timer.stop();
+								timer.stop();
 							}
 							run();
 							board.repaint();
@@ -92,13 +89,13 @@ public class Game extends JFrame {
 					};
 					setVisible(true);
 
-					timer = new Timer(1000 / speed*10, actListener);
+					timer = new Timer(1000 / (speed * 10), actListener);
 					timer.start();
 
-					if(!timer.isRunning()){
-					remove(board);
-					background.setVisible(true);
-					setVisible(true);
+					if (!timer.isRunning()) {
+						remove(board);
+						background.setVisible(true);
+						setVisible(true);
 					}
 
 					setVisible(true);
@@ -126,8 +123,8 @@ public class Game extends JFrame {
 	public boolean isRunning() {
 		return board.isRunning();
 	}
-	
-	public static void pause(){
-		
+
+	public static void pause() {
+
 	}
 }
