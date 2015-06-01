@@ -2,8 +2,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.Timer;
 
-import javafx.scene.input.KeyCode;
-
 public class GameBoard extends Canvas {
 
 	private Snake snake;
@@ -17,6 +15,8 @@ public class GameBoard extends Canvas {
 		setBackground(backgroundColor);
 		setSize(Game.WIDTH, Game.HEIGHT);
 		score = 0;
+		addKeyListener(snake);
+		setFocusable(true);
 	}
 
 	public boolean isRunning() {
@@ -30,9 +30,8 @@ public class GameBoard extends Canvas {
 
 	public void tick() {
 		snake.move();
-		//listen for key
 		if (snake.isOn(fruit)) {
-			score += 1;
+			score += 10;
 			snake.grow();
 			fruit.move(snake);
 		}

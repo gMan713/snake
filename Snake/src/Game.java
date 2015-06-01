@@ -42,7 +42,7 @@ public class Game extends JFrame {
 
 		try {
 
-			myPicture = ImageIO.read(new File("Snake/Blue Snake.jpg"));
+			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
 			background.setLayout(new FlowLayout());
@@ -71,7 +71,7 @@ public class Game extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 					// start game
-					speed = 1;
+					int speed = 1;
 					snakeColor = Color.RED;
 					backgroundColor = Color.BLACK;
 					board = new GameBoard(speed, snakeColor, backgroundColor);
@@ -92,7 +92,7 @@ public class Game extends JFrame {
 					};
 					setVisible(true);
 
-					timer = new Timer(1000 / 10, actListener);
+					timer = new Timer(1000 / 20, actListener);
 					timer.start();
 
 					if(!timer.isRunning()){

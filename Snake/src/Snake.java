@@ -21,7 +21,7 @@ public class Snake implements KeyListener {
 		this.speed = speed;
 		direction = 2;
 		this.color = color;
-		segments = new ArrayList<Segment>();// 0 is the last segment
+		segments = new ArrayList<Segment>();// 0 is the front of the snake
 		segments.add(new Segment(50, Game.HEIGHT / 2, color));
 		segments.add(new Segment(60, Game.HEIGHT / 2, color));
 		segments.add(new Segment(70, Game.HEIGHT / 2, color));
@@ -29,7 +29,7 @@ public class Snake implements KeyListener {
 	}
 
 	public void grow() {
-		growsLeft = 4;
+		growsLeft = 8;
 	}
 
 	public void move() {
@@ -86,7 +86,7 @@ public class Snake implements KeyListener {
 	public boolean isOn(Fruit fruit) {
 		for (Segment segment : segments) {
 			if (segment.getX() == fruit.getX()
-					&& segment.getY() == fruit.getX()) {
+					&& segment.getY() == fruit.getY()) {
 				return true;
 			}
 		}

@@ -21,8 +21,8 @@ public class Fruit {
 	}
 
 	public void move(Snake snake) {
-		this.x = (int) ((int) Math.random() * Game.WIDTH);
-		this.y = (int) ((int) Math.random() * Game.HEIGHT);
+		this.x = (int) (Math.random() * Game.WIDTH / 10) * 10;
+		this.y = (int) (Math.random() * Game.HEIGHT/ 10) * 10;
 		while (snake.isOn(this)) {
 			move(snake);
 		}
@@ -30,6 +30,6 @@ public class Fruit {
 
 	public void paint(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.fillRect(x + 1, y + 1, 10, 10);
+		g.fillRect(x + 1, y + 1, 8, 8);
 	}
 }
