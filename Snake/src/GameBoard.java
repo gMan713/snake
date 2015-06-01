@@ -1,6 +1,7 @@
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.util.Timer;
 
 public class GameBoard extends Canvas {
 
@@ -36,8 +37,8 @@ public class GameBoard extends Canvas {
 			fruit.move(snake);
 		}
 	}
-	
-	public void update(Graphics g){
+
+	public void update(Graphics g) {
 		repaint();
 	}
 

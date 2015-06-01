@@ -1,7 +1,5 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -44,7 +42,7 @@ public class Snake implements KeyListener {
 			growsLeft--;
 			length++;
 		} else {
-			Segment last = segments.get(segments.size()-1);
+			Segment last = segments.get(segments.size() - 1);
 			if (direction == 1) {
 				last.move(getX(), getY() - 10);
 				addToFront(last);
@@ -60,13 +58,13 @@ public class Snake implements KeyListener {
 			}
 		}
 	}
-	
-	public void addToFront(Segment last){
+
+	public void addToFront(Segment last) {
 		segments.remove(last);
 		segments.add(0, last);
-		
+
 	}
-	
+
 	public void paint(Graphics g) {
 		for (int i = 0; i < segments.size(); i++) {
 			segments.get(i).paint(g);

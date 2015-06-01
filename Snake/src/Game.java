@@ -127,4 +127,5 @@ public class Game extends JFrame {
 	public static void pause() {
 
 	}
+
 }
