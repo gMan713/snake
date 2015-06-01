@@ -71,10 +71,10 @@ public class Game extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 					// start game
-					int speed = 1;
+					speed = 2;
 					snakeColor = Color.RED;
 					backgroundColor = Color.BLACK;
-					board = new GameBoard(speed, snakeColor, backgroundColor);
+					board = new GameBoard(snakeColor, backgroundColor);
 
 					add(board);
 					board.repaint();
@@ -92,7 +92,7 @@ public class Game extends JFrame {
 					};
 					setVisible(true);
 
-					timer = new Timer(1000 / 20, actListener);
+					timer = new Timer(1000 / speed*10, actListener);
 					timer.start();
 
 					if(!timer.isRunning()){

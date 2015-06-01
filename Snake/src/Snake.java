@@ -10,15 +10,13 @@ public class Snake implements KeyListener {
 
 	private boolean alive;
 	private int growsLeft;
-	private int speed;
 	private int direction; // 1,2,3,4 is N,E,S,W
 	private int length = 4;
 	private Color color;
 	private ArrayList<Segment> segments;
 
-	public Snake(int speed, Color color) {
+	public Snake(Color color) {
 		alive = true;
-		this.speed = speed;
 		direction = 2;
 		this.color = color;
 		segments = new ArrayList<Segment>();// 0 is the front of the snake

@@ -9,8 +9,8 @@ public class GameBoard extends Canvas {
 	private Fruit fruit;
 	private BufferStrategy bs;
 
-	public GameBoard(int speed, Color snakeColor, Color backgroundColor) {
-		snake = new Snake(speed, snakeColor);
+	public GameBoard(Color snakeColor, Color backgroundColor) {
+		snake = new Snake(snakeColor);
 		fruit = new Fruit();
 		setBackground(backgroundColor);
 		setSize(Game.WIDTH, Game.HEIGHT);
