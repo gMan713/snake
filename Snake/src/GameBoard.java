@@ -52,6 +52,7 @@ public class GameBoard extends Canvas {
 		paint(g);
 		g.dispose();
 		bs.show();
+		repaint();
 		bs.dispose();
 	}
 }

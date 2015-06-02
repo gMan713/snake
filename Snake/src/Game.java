@@ -33,7 +33,6 @@ public class Game extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(WIDTH, HEIGHT);
-		setUndecorated(false);
 		setLocationRelativeTo(null);
 		BufferedImage myPicture;
 
