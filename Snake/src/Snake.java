@@ -105,13 +105,13 @@ public class Snake implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent k) {
-		if (k.getKeyCode() == KeyEvent.VK_UP) {
+		if (k.getKeyCode() == KeyEvent.VK_UP && direction != 3) {
 			direction = 1;
-		} else if (k.getKeyCode() == KeyEvent.VK_RIGHT) {
+		} else if (k.getKeyCode() == KeyEvent.VK_RIGHT && direction != 4) {
 			direction = 2;
-		} else if (k.getKeyCode() == KeyEvent.VK_DOWN) {
+		} else if (k.getKeyCode() == KeyEvent.VK_DOWN && direction != 1) {
 			direction = 3;
-		} else if (k.getKeyCode() == KeyEvent.VK_LEFT) {
+		} else if (k.getKeyCode() == KeyEvent.VK_LEFT && direction != 2) {
 			direction = 4;
 		}
 	}
