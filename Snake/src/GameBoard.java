@@ -39,7 +39,7 @@ public class GameBoard extends Canvas {
 	}
 
 	public void update(Graphics g) {
-		repaint();
+		render();
 	}
 
 	public void render() {
