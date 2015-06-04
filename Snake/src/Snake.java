@@ -13,9 +13,11 @@ public class Snake implements KeyListener {
 	private int length = 4;
 	private Color color;
 	private ArrayList<Segment> segments;
+	private int topGap;
 
-	public Snake(Color color) {
+	public Snake(Color color, int topGap) {
 		alive = true;
+		this.topGap = topGap;
 		tempDirection = 2;
 		this.color = color;
 		segments = new ArrayList<Segment>();// 0 is the front of the snake
@@ -100,7 +102,7 @@ public class Snake implements KeyListener {
 				return false;
 			}
 		}
-		if (getX() < 0 || getX() > width - 20 || getY() < 0
+		if (getX() < topGap || getX() > width - 20 || getY() < topGap
 				|| getY() > height - 40) {
 			return false;
 		}

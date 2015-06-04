@@ -9,10 +9,11 @@ public class GameBoard extends Canvas {
 	private int score;
 	private Fruit fruit;
 	private BufferStrategy bs;
+	private final int TOP_GAP = 20;
 
 	public GameBoard(Color snakeColor, Color backgroundColor) {
-		snake = new Snake(snakeColor);
-		fruit = new Fruit();
+		snake = new Snake(snakeColor, TOP_GAP);
+		fruit = new Fruit(TOP_GAP);
 		setBackground(backgroundColor);
 		setSize(Game.WIDTH, Game.HEIGHT);
 		score = 0;
@@ -25,8 +26,12 @@ public class GameBoard extends Canvas {
 	}
 
 	public void paint(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.drawLine(0, TOP_GAP, Game.WIDTH, TOP_GAP);
+		g.drawString("Score: " + score, 5, 13);
 		snake.paint(g);
 		fruit.paint(g);
+
 	}
 
 	public void tick() {
