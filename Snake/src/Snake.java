@@ -9,13 +9,14 @@ public class Snake implements KeyListener {
 	private boolean alive;
 	private int growsLeft;
 	private int direction; // 1,2,3,4 is N,E,S,W
+	private int tempDirection;
 	private int length = 4;
 	private Color color;
 	private ArrayList<Segment> segments;
 
 	public Snake(Color color) {
 		alive = true;
-		direction = 2;
+		tempDirection = 2;
 		this.color = color;
 		segments = new ArrayList<Segment>();// 0 is the front of the snake
 		segments.add(new Segment(80, Game.HEIGHT / 2, color));
@@ -29,6 +30,7 @@ public class Snake implements KeyListener {
 	}
 
 	public void move() {
+		direction = tempDirection;
 		if (growsLeft > 0) {
 			if (direction == 1) {
 				segments.add(0, new Segment(getX(), getY() - 10, color));
@@ -107,13 +109,13 @@ public class Snake implements KeyListener {
 
 	public void keyPressed(KeyEvent k) {
 		if (k.getKeyCode() == KeyEvent.VK_UP && direction != 3) {
-			direction = 1;
+			tempDirection = 1;
 		} else if (k.getKeyCode() == KeyEvent.VK_RIGHT && direction != 4) {
-			direction = 2;
+			tempDirection = 2;
 		} else if (k.getKeyCode() == KeyEvent.VK_DOWN && direction != 1) {
-			direction = 3;
+			tempDirection = 3;
 		} else if (k.getKeyCode() == KeyEvent.VK_LEFT && direction != 2) {
-			direction = 4;
+			tempDirection = 4;
 		}
 	}
 
