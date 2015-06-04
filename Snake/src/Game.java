@@ -79,23 +79,21 @@ public class Game extends JFrame {
 
 					actListener = new ActionListener() {
 						public void actionPerformed(ActionEvent event) {
-							if (!isRunning()) {
-								timer.stop();
-							}
+
 							run();
 							board.repaint();
+							if (!isRunning()) {
+								timer.stop();
+								remove(board);
+								background.setVisible(true);
+								setVisible(true);
+							}
 						}
 					};
 					setVisible(true);
 
 					timer = new Timer(1000 / (speed * 10), actListener);
 					timer.start();
-
-					if (!timer.isRunning()) {
-						remove(board);
-						background.setVisible(true);
-						setVisible(true);
-					}
 
 					setVisible(true);
 				}

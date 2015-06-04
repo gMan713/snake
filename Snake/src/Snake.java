@@ -98,8 +98,8 @@ public class Snake implements KeyListener {
 				alive = false;
 			}
 		}
-		if (getX() < 0 || getX() > width - 30 || getY() < 0
-				|| getY() > height - 50) {
+		if (getX() < 0 || getX() > width - 20 || getY() < 0
+				|| getY() > height - 40) {
 			return false;
 		}
 		return true;
