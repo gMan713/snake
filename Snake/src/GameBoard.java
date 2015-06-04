@@ -30,13 +30,12 @@ public class GameBoard extends Canvas {
 	}
 
 	public void tick() {
-		snake.move();
 		if (snake.isOn(fruit)) {
-			Game.speed++;
 			score += 10;
 			snake.grow();
 			fruit.move(snake);
 		}
+		snake.move();
 	}
 
 	public void update(Graphics g) {
