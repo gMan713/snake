@@ -25,7 +25,7 @@ public class Game extends JFrame {
 	private ActionListener playListener;
 
 	private Color snakeColor;
-	private int speed;
+	public static int speed;
 	private Color backgroundColor;
 	private boolean running = false;
 
@@ -45,6 +45,7 @@ public class Game extends JFrame {
 
 	public void menu() {
 		try {
+			
 			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
@@ -53,7 +54,6 @@ public class Game extends JFrame {
 			final JButton option = new JButton();
 			option.setText("Options");
 			option.setBackground(Color.WHITE);
-
 			background.add(option);
 
 			final JButton quit = new JButton();
@@ -69,9 +69,9 @@ public class Game extends JFrame {
 			final JButton play = new JButton();
 			play.setText("Play");
 			play.setBackground(Color.WHITE);
-			background.add(play);
 			play(background);
 			play.addActionListener(playListener);
+			background.add(play);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -82,7 +82,9 @@ public class Game extends JFrame {
 	public void play(final JLabel background) {
 		playListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				playGame(background);
+				
 				timer = new Timer(1000 / (speed * 10), actListener);
 				timer.start();
 			}
@@ -106,7 +108,9 @@ public class Game extends JFrame {
 
 				run();
 				board.repaint();
+				
 				if (!isRunning()) {
+					
 					timer.stop();
 
 					final JPanel deathPanel = new JPanel();
@@ -118,7 +122,7 @@ public class Game extends JFrame {
 					playAgain.setBackground(Color.WHITE);
 					playAgain.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-
+							play(background);
 						}
 					});
 					deathPanel.add(playAgain);
