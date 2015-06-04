@@ -18,10 +18,10 @@ public class Snake implements KeyListener {
 		direction = 2;
 		this.color = color;
 		segments = new ArrayList<Segment>();// 0 is the front of the snake
-		segments.add(new Segment(50, Game.HEIGHT / 2, color));
-		segments.add(new Segment(60, Game.HEIGHT / 2, color));
-		segments.add(new Segment(70, Game.HEIGHT / 2, color));
 		segments.add(new Segment(80, Game.HEIGHT / 2, color));
+		segments.add(new Segment(70, Game.HEIGHT / 2, color));
+		segments.add(new Segment(60, Game.HEIGHT / 2, color));
+		segments.add(new Segment(50, Game.HEIGHT / 2, color));
 	}
 
 	public void grow() {
@@ -95,7 +95,7 @@ public class Snake implements KeyListener {
 		for (int i = 1; i < segments.size(); i++) {
 			if (getX() == segments.get(i).getX()
 					&& getY() == segments.get(i).getY()) {
-				alive = false;
+				return false;
 			}
 		}
 		if (getX() < 0 || getX() > width - 20 || getY() < 0
