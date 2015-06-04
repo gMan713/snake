@@ -11,19 +11,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Game extends JFrame {
 
 	private JFrame j = new JFrame();
 	private BufferedImage backgroundPic;
+	private BufferedImage myPicture;
+	private GameBoard board;
+	private Timer timer;
+	private ActionListener actListener;
+	private ActionListener playListener;
+
 	private Color snakeColor;
 	private int speed;
 	private Color backgroundColor;
 	private boolean running = false;
-	private GameBoard board;
-	private Timer timer;
-	private ActionListener actListener;
+
 	public static final int WIDTH = 1200;
 	public static final int HEIGHT = 700;
 
@@ -34,10 +39,12 @@ public class Game extends JFrame {
 		setResizable(false);
 		setSize(WIDTH, HEIGHT);
 		setLocationRelativeTo(null);
-		BufferedImage myPicture;
 
+		menu();
+	}
+
+	public void menu() {
 		try {
-
 			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
@@ -63,45 +70,75 @@ public class Game extends JFrame {
 			play.setText("Play");
 			play.setBackground(Color.WHITE);
 			background.add(play);
-			play.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-					// start game
-					speed = 2;
-					snakeColor = Color.RED;
-					backgroundColor = Color.BLACK;
-					board = new GameBoard(snakeColor, backgroundColor);
-
-					add(board);
-					board.repaint();
-					setVisible(true);
-					background.setVisible(false);
-
-					actListener = new ActionListener() {
-						public void actionPerformed(ActionEvent event) {
-
-							run();
-							board.repaint();
-							if (!isRunning()) {
-								timer.stop();
-								remove(board);
-								background.setVisible(true);
-								setVisible(true);
-							}
-						}
-					};
-					setVisible(true);
-
-					timer = new Timer(1000 / (speed * 10), actListener);
-					timer.start();
-
-					setVisible(true);
-				}
-			});
+			play(background);
+			play.addActionListener(playListener);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		setVisible(true);
+	}
+
+	public void play(final JLabel background) {
+		playListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playGame(background);
+				timer = new Timer(1000 / (speed * 10), actListener);
+				timer.start();
+			}
+		};
+	}
+
+	public void playGame(final JLabel background) {
+
+		speed = 2;
+		snakeColor = Color.RED;
+		backgroundColor = Color.BLACK;
+		board = new GameBoard(snakeColor, backgroundColor);
+
+		add(board);
+		board.repaint();
+		setVisible(true);
+		background.setVisible(false);
+
+		actListener = new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+
+				run();
+				board.repaint();
+				if (!isRunning()) {
+					timer.stop();
+
+					final JPanel deathPanel = new JPanel();
+					deathPanel.setSize(WIDTH, HEIGHT);
+					deathPanel.setBackground(Color.GRAY);
+
+					final JButton playAgain = new JButton();
+					playAgain.setText("Play Again?");
+					playAgain.setBackground(Color.WHITE);
+					playAgain.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+
+						}
+					});
+					deathPanel.add(playAgain);
+
+					final JButton menu = new JButton();
+					menu.setText("Menu");
+					menu.setBackground(Color.WHITE);
+					menu.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Game game = new Game();
+						}
+					});
+					deathPanel.add(menu);
+
+					remove(board);
+					add(deathPanel);
+					setVisible(true);
+				}
+			}
+		};
 	}
 
 	public void run() {
@@ -124,5 +161,4 @@ public class Game extends JFrame {
 	public static void pause() {
 
 	}
-
 }
