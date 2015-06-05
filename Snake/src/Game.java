@@ -45,7 +45,7 @@ public class Game extends JFrame {
 
 	public void menu() {
 		try {
-			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
+			myPicture = ImageIO.read(new File("Snake/Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
 			background.setLayout(new FlowLayout());
@@ -110,17 +110,13 @@ public class Game extends JFrame {
 					timer.stop();
 
 					final JPanel deathPanel = new JPanel();
-					deathPanel.setSize(WIDTH, HEIGHT);
-					deathPanel.setBackground(Color.GRAY);
+					deathPanel.setSize(300, 100);
+					deathPanel.setBackground(Color.LIGHT_GRAY);
 
 					final JButton playAgain = new JButton();
 					playAgain.setText("Play Again?");
 					playAgain.setBackground(Color.WHITE);
-					playAgain.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-
-						}
-					});
+					playAgain.addActionListener(playListener);
 					deathPanel.add(playAgain);
 
 					final JButton menu = new JButton();
@@ -128,7 +124,9 @@ public class Game extends JFrame {
 					menu.setBackground(Color.WHITE);
 					menu.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							Game game = new Game();
+							remove(board);
+							remove(deathPanel);
+							menu();
 						}
 					});
 					deathPanel.add(menu);
