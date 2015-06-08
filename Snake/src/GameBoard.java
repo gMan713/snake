@@ -60,4 +60,8 @@ public class GameBoard extends Canvas {
 		repaint();
 		bs.dispose();
 	}
+
+	public int getScore() {
+		return score;
+	}
 }

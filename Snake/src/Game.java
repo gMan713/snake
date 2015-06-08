@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 public class Game extends JFrame {
@@ -45,16 +46,15 @@ public class Game extends JFrame {
 
 	public void menu() {
 		try {
-			myPicture = ImageIO.read(new File("Snake/Blue Snake.jpg"));
+			myPicture = ImageIO.read(new File("Blue Snake.jpg"));
 			final JLabel background = new JLabel(new ImageIcon(myPicture));
 			add(background);
 			background.setLayout(new FlowLayout());
 
 			final JButton option = new JButton();
 			option.setText("Options");
-			option.setBackground(Color.WHITE);
 
-			background.add(option);
+			// background.add(option);
 
 			final JButton quit = new JButton();
 			quit.setText("Quit");
@@ -68,11 +68,10 @@ public class Game extends JFrame {
 
 			final JButton play = new JButton();
 			play.setText("Play");
-			play.setBackground(Color.WHITE);
 			background.add(play);
 			play(background);
 			play.addActionListener(playListener);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,12 +90,13 @@ public class Game extends JFrame {
 
 	public void playGame(final JLabel background) {
 
-		speed = 2;
+		speed = 3;
 		snakeColor = Color.RED;
 		backgroundColor = Color.BLACK;
 		board = new GameBoard(snakeColor, backgroundColor);
 
 		add(board);
+		board.requestFocus();
 		board.repaint();
 		setVisible(true);
 		background.setVisible(false);
@@ -113,10 +113,27 @@ public class Game extends JFrame {
 					deathPanel.setSize(300, 100);
 					deathPanel.setBackground(Color.LIGHT_GRAY);
 
+					final JLabel scoreLabel = new JLabel("Score: "
+							+ board.getScore(), SwingConstants.CENTER);
+					int width = scoreLabel.getFontMetrics(scoreLabel.getFont())
+							.stringWidth(scoreLabel.getText().toString());
+					scoreLabel.setSize(width, 25);
+					deathPanel.add(scoreLabel);
+
 					final JButton playAgain = new JButton();
-					playAgain.setText("Play Again?");
+					playAgain.setText("Play Again");
 					playAgain.setBackground(Color.WHITE);
-					playAgain.addActionListener(playListener);
+					playAgain.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							remove(deathPanel);
+							playGame(background);
+							timer = new Timer(1000 / (speed * 10), actListener);
+							timer.start();
+
+						}
+					});
 					deathPanel.add(playAgain);
 
 					final JButton menu = new JButton();
@@ -124,7 +141,6 @@ public class Game extends JFrame {
 					menu.setBackground(Color.WHITE);
 					menu.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							remove(board);
 							remove(deathPanel);
 							menu();
 						}
