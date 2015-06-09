@@ -102,7 +102,7 @@ public class Snake implements KeyListener {
 				return false;
 			}
 		}
-		if (getX() < topGap || getX() > width - 20 || getY() < topGap
+		if (getX() < 0 || getX() > width - 20 || getY() < topGap
 				|| getY() > height - 40) {
 			return false;
 		}
